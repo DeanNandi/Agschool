@@ -1,0 +1,62 @@
+{% load static %}
+<!-- _aside.html -->
+<!-- ======= Mobile nav toggle button ======= -->
+<i class="bi bi-list mobile-nav-toggle d-xl-none"></i>
+<!-- ======= Header ======= -->
+<header id="header">
+    <div class="d-flex flex-column">
+        <div class="profile">
+            {% if candidate.photo %}
+                <img src="{{ candidate.photo.url }}" alt="" class="img-fluid rounded-circle">
+            {% else %}
+                <img src="{% static 'img/german_flag.png' %}" alt="" class="img-fluid rounded-circle">
+            {% endif %}
+            <h1 class="text-light"><a href="{% url 'home' %}">{{ candidate.First_Name }} {{ candidate.Last_Name }}</a></h1>
+            <br>
+
+
+            <nav id="navbar" class="nav-menu navbar">
+                <ul>
+                    <li class="{% if request.resolver_match.url_name == 'home' %}active{% endif %}">
+                        <a href="{% url 'home' %}" class="nav-link scrollto {% if request.resolver_match.url_name == 'home' %}active{% endif %}">
+                            <i class="bx bx-home"></i> <span>Home Page</span>
+                        </a>
+                    </li>
+                    <li class="{% if request.resolver_match.url_name == 'upload_documents' %}active{% endif %}">
+                        <a href="{% url 'upload_documents' %}" class="nav-link scrollto {% if request.resolver_match.url_name == 'upload_documents' %}active{% endif %}">
+                            <i class="bx bx-id-card"></i> <span>My Details</span>
+                        </a>
+                    </li>
+                    <!-- Updated Downloads Center link with active state check for multiple URLs -->
+                    <li class="{% if request.resolver_match.url_name == 'downloads' or request.resolver_match.url_name == 'menschen_a1' or request.resolver_match.url_name == 'menschen_a2' or request.resolver_match.url_name == 'menschen_b1' or request.resolver_match.url_name == 'menschen_b2' %}active{% endif %}">
+                        <a href="{% url 'downloads' %}" class="nav-link scrollto {% if request.resolver_match.url_name == 'downloads' or request.resolver_match.url_name == 'menschen_a1' or request.resolver_match.url_name == 'menschen_a2' or request.resolver_match.url_name == 'menschen_b1' or request.resolver_match.url_name == 'menschen_b2' %}active{% endif %}">
+                            <i class="bx bx-cloud-download"></i> <span>Download Center</span>
+                        </a>
+                    </li>
+                    <li class="{% if request.resolver_match.url_name == 'coursework' %}active{% endif %}">
+                        <a href="{% url 'coursework' %}" class="nav-link scrollto {% if request.resolver_match.url_name == 'coursework' %}active{% endif %}">
+                            <i class="bx bxs-report"></i> <span>Coursework Marks</span>
+                        </a>
+                    </li>
+                    <li class="{% if request.resolver_match.url_name == 'class-attendance' %}active{% endif %}">
+                        <a href="{% url 'class-attendance' %}" class="nav-link scrollto {% if request.resolver_match.url_name == 'class-attendance' %}active{% endif %}">
+                            <i class="bx bx-calendar-check"></i> <span>Attendance</span>
+                        </a>
+                    </li>
+                    <li class="{% if request.resolver_match.url_name == 'payment-history' %}active{% endif %}">
+                        <a href="{% url 'payment-history' %}" class="nav-link scrollto {% if request.resolver_match.url_name == 'payment-history' %}active{% endif %}">
+                            <i class="bx bx-credit-card"></i> <span>Payment History</span>
+                        </a>
+                    </li>
+
+
+                    <li><a href="/logout" class="nav-link scrollto">
+                        <i class="bx bx-log-out"></i> <span>Log-Out</span></a>
+                    </li>
+                </ul>
+
+            </nav><!-- .nav-menu -->
+                {% include "_footer.html" %}
+        </div>
+    </div>
+</header><!-- End Header -->

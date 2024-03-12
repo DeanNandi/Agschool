@@ -1,0 +1,94 @@
+<!-- downloads.html -->
+{% extends 'base.html' %}
+{% block content %}
+<link rel="stylesheet" href="https://cdn.datatables.net/1.13.7/css/dataTables.bootstrap5.min.css">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.8.1/font/bootstrap-icons.min.css" rel="stylesheet">
+
+<main id="main">
+        {% include "header.html" %}
+    <div class="vertical-space">
+            <!-- Back Button with Bootstrap Icon -->
+            <button onclick="window.history.back();" class="btn btn-light border" aria-label="Go back">
+                <i class="bi bi-arrow-left"></i> Back
+            </button>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+        <!-- Available PDF Downloads -->
+        <div class="col-12 center-flex">
+            <div class="container overflow-auto">
+                <div class="card my-3">
+                    <div class="card-header">Available PDF Downloads</div>
+                    <div class="table-responsive"><br>
+                        <table id="example" class="table table-striped overflow-auto" style="width:100%">
+                            <thead>
+                            <tr>
+                                <th class="text-center">Title</th>
+                                <th class="text-center">Resource</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% for resource in pdf_resources %}
+                            <tr>
+                                <td class="text-center">{{ resource.title }}</td>
+                                <td class="text-center"><a href="{{ resource.pdf_file.url }}" class="btn sm btn-primary"
+                                                           download>Get PDF</a></td>
+                            </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Available Audio Downloads -->
+        <div class="col-12 center-flex">
+            <div class="container overflow-auto">
+                <div class="card my-3">
+                    <div class="card-header">Available Audio Downloads</div>
+                    <div class="table-responsive"><br>
+                        <table id="example1" class="table table-striped overflow-auto" style="width:100%">
+                            <thead>
+                                <tr>
+                                    <th class="text-center">Title</th>
+                                    <th class="text-center">Resource</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for resource in audio_resources %}
+                                <tr>
+                                    <td>{{ resource.title }}</td>
+                                    <td><a href="{{ resource.audio_file.url }}" class="btn sm btn-primary" download>Get Audio</a></td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+<!--datatables-->
+<script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+<script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.13.7/js/dataTables.bootstrap5.min.js"></script>
+
+
+<script>
+    // Existing DataTable initialization
+    $(document).ready(function () {
+        $('#example').DataTable();
+    });
+</script>
+
+<script>
+    // Existing DataTable initialization
+    $(document).ready(function () {
+        $('#example1').DataTable();
+    });
+</script>
+
+{% endblock %}
